@@ -1,0 +1,28 @@
+.btn {
+    padding: .8rem 1rem;
+    cursor: pointer;
+    border: 2px solid $greyDark;
+    font-size: 1.4rem;
+    border-radius: .2rem;
+    color: $greyDark;
+    font-weight: 600;
+    border-color: $greyLight;
+    outline: none;
+    &:hover {
+        border-color: $greyDark;
+        color: $blue;
+    }
+}
+.btns__top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    button {
+      margin: 5px;
+    }
+  }
+
+  .loader {
+    margin: 40rem auto;
+    display: flex;
+  }

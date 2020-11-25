@@ -27,11 +27,11 @@
         </div>
       </div>
       <div class="com" @click="show = !show" v-if="comments.length !== 0 && !loading">Comments</div>
+      <div class="message" v-if="comments.length === 0">
+        <h1>The post have no comments yet...</h1>
+      </div>
       <div class="message" v-else-if="post === undefined">
         <h1>the post is deleted...</h1>
-      </div>
-      <div class="message" v-else-if="post.id === undefined">
-        <h1>The post have no comments yet...</h1>
       </div>
       <div class="comments" v-if="show && !loading">
         <div class="comment" v-for="comment in comments" :key="comment.id">

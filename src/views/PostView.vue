@@ -26,11 +26,7 @@
           <span>{{ post.body }}</span>
         </div>
       </div>
-      <div
-        class="com"
-        @click="show = !show"
-        v-if="comments.length !== 0 && !loading && post.id !== undefined"
-      >Comments</div>
+      <div class="com" @click="show = !show" v-if="comments.length !== 0 && !loading">Comments</div>
       <div class="message" v-else-if="post === undefined">
         <h1>the post is deleted...</h1>
       </div>

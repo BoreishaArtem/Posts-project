@@ -26,11 +26,15 @@
           <span>{{ post.body }}</span>
         </div>
       </div>
-      <div class="com" @click="show = !show" v-if="comments.length !== 0 && !loading">Comments</div>
+      <div
+        class="com"
+        @click="show = !show"
+        v-if="comments.length !== 0 && !loading && post.id !== undefined"
+      >Comments</div>
       <div class="message" v-else-if="post === undefined">
         <h1>the post is deleted...</h1>
       </div>
-      <div class="message" v-else>
+      <div class="message" v-else-if="post.id === undefined">
         <h1>The post have no comments yet...</h1>
       </div>
       <div class="comments" v-if="show && !loading">
@@ -93,6 +97,7 @@ export default {
   },
   created() {
     this.getComments();
+    console.log(this.comments);
     this.getPostInfo();
   }
 };

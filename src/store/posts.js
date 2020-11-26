@@ -17,11 +17,9 @@ export default {
       state.comments = payload
     },
     addNewPost(state, payload) {
-      console.log(payload, 'Added new Post')
       state.posts.push(payload)
     },
     setCurrentPost(state, payload) {
-      console.log(payload, 'Current post is setted')
       state.currentPost = payload
     },
     deletePost(state, payload) {

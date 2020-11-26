@@ -3,6 +3,7 @@
     <router-link to="/" class="btns__top">
       <button class="btn">back</button>
     </router-link>
+
     <v-loader v-if="loading" class="loader" />
 
     <table class="table" v-else>
@@ -24,7 +25,6 @@
       </tbody>
     </table>
     <v-modal :company="company" v-if="modal" @closeModal="modal=false">
-      <!-- <span class="modal__body--content--type">Hello:</span> -->
       <div class="modal__body--content">
         <span class="modal__body--content--type">Company:</span>
         <span class="modal__body--content--val">{{company.name}}</span>
@@ -37,14 +37,13 @@
         <span class="modal__body--content--type">Bs:</span>
         <span class="modal__body--content--val">{{company.bs}}</span>
       </div>
-      <!-- <span class="modal__body--content--val">World</span> -->
     </v-modal>
   </div>
 </template>
 
 <script>
-import Modal from "../components/Modal.vue";
-import Loader from "../components/Loader.vue";
+import Modal from "./Modal.vue";
+import Loader from "./Loader.vue";
 
 export default {
   data() {
@@ -160,25 +159,4 @@ export default {
     width: 100%;
   }
 }
-
-// .table {
-//   margin: 0 auto;
-//   font-size: 1.6rem;
-//   padding: 1rem;
-//   width: 100%;
-//   max-width: 80rem;
-//   border-radius: 0.3rem;
-//   border: 0.1rem solid $blue;
-//   box-shadow: 0 0.2rem 1rem rgba(7, 7, 555, 0.9);
-//   &__head {
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-
-//     &--th {
-//       width: 10px;
-//     }
-//   }
-// }
 </style>

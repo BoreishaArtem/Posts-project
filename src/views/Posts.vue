@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <v-loader v-if="loading" class="loader" />
+
     <div class="btns__top">
       <router-link to="/create">
         <button class="btn left">Create post</button>
@@ -13,6 +14,7 @@
     <div id="posts">
       <v-post v-for="post in postsOnPages" :key="post.id" :post="post" />
     </div>
+
     <div class="post__pagination">
       <button @click="currentPage--" class="btn btn--prev">Prev</button>
       <div

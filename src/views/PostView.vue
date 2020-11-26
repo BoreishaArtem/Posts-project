@@ -31,7 +31,7 @@
       </div>
 
       <div
-        class="com"
+        class="comments"
         @click="show = !show"
         v-if="!loading &&  $route.params.post === 'notrequired' "
       >Comments</div>
@@ -41,7 +41,6 @@
       <div class="message" v-else>
         <h1>The post have no comments yet...</h1>
       </div>
-      <!-- COMMENTS -->
 
       <div class="comments" v-if="show">
         <div class="comment" v-for="comment in comments" :key="comment.id">
@@ -97,9 +96,6 @@ export default {
   created() {
     this.getComments();
     this.getPostInfo();
-  },
-  mounted() {
-    console.log(this.$route.params);
   }
 };
 </script>
@@ -128,7 +124,7 @@ export default {
     }
   }
 }
-.com {
+.comments {
   text-align: center;
   background-color: $greyLight;
   border: 0.15rem solid $greyLight;

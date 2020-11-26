@@ -1,12 +1,14 @@
 <template>
   <div class="post">
-    <router-link
-      :to="{ name: 'postview', params: { id: +post.id, post: { title: post.title, body: post.body } } }"
-      class="post__title"
-    >
-      <div>{{ post.title }}</div>
-      <span class="post__title--delete">&times;</span>
-    </router-link>
+    <div class="post__header">
+      <router-link
+        :to="{ name: 'postview', params: { id: +post.id, post: post.userId === undefined ? post : 'notrequired', specified: post.userId === undefined ? false : true }}"
+        class="post__header--title"
+      >
+        <div>{{ post.title }}</div>
+      </router-link>
+      <span class="post__header--delete" @click="deletePost(post.id)">&times;</span>
+    </div>
     <div class="post__body">{{ post.body }}</div>
   </div>
 </template>
@@ -24,9 +26,12 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    console.log(this.post, "POst");
-  }
+  methods: {
+    deletePost(id) {
+      this.$store.dispatch("deletePost", id);
+    }
+  },
+  mounted() {}
 };
 </script>
 
@@ -43,21 +48,27 @@ export default {
   border: 0.1rem solid $greyMedium;
   border-radius: 5px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
-  &__title {
+  &__header {
     font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1.5rem;
     padding: 1rem;
+    font-size: 1.5rem;
     border-bottom: 0.5rem solid $greyMedium;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: $greyMedium;
-    color: $greyDark;
-    text-transform: uppercase;
+
+    &--title {
+      text-decoration: none;
+      color: $greyDark;
+      text-transform: uppercase;
+      width: 90%;
+      cursor: pointer;
+      text-align: left;
+    }
     &--delete {
+      cursor: pointer;
       display: flex;
       justify-content: flex-end;
       align-items: center;

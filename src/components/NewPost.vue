@@ -43,9 +43,12 @@ export default {
   methods: {
     addNewPost() {
       if (this.title !== "" && this.body !== "") {
+        const allPosts = [...this.$store.getters.allPosts];
+        const id = allPosts[allPosts.length - 1].id + 1;
         this.$store.dispatch("addNewPost", {
           title: this.title,
-          body: this.body
+          body: this.body,
+          id
         });
         this.$router.push("/");
       } else {
@@ -68,7 +71,8 @@ export default {
         }
       }
     }
-  }
+  },
+  mounted() {}
 };
 </script>
 
@@ -76,7 +80,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 .new__post {
   width: 50rem;
-  border: 0.1rem solid $greyDark;
+  border: 0.2rem solid $greyLight;
   border-radius: 0.3rem;
   margin: 5rem auto;
   &--header {
@@ -101,6 +105,7 @@ export default {
     }
     &--title:focus {
       border-color: $blue;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
     }
     &--description {
       padding: 1rem;
@@ -113,10 +118,10 @@ export default {
     }
     &--description:focus {
       border-color: $blue;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
     }
   }
   &--footer {
-    border-top: 0.1rem solid $greyMedium;
     display: flex;
     justify-content: space-between;
     align-items: center;

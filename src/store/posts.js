@@ -17,10 +17,19 @@ export default {
       state.comments = payload
     },
     addNewPost(state, payload) {
+      console.log(payload, 'Added new Post')
       state.posts.push(payload)
     },
     setCurrentPost(state, payload) {
+      console.log(payload, 'Current post is setted')
       state.currentPost = payload
+    },
+    deletePost(state, payload) {
+      state.posts.forEach((post, index) => {
+        if (post.id === payload) {
+          state.posts.splice(index, 1)
+        }
+      })
     }
   },
   actions: {
@@ -57,6 +66,9 @@ export default {
       if (!payload) {
         state.loading = false
       }
+    },
+    deletePost({ commit }, payload) {
+      commit('deletePost', payload)
     }
   },
   getters: {

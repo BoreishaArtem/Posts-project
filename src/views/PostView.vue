@@ -10,7 +10,7 @@
     </div>
     <div class="post__view">
       <v-loader v-if="loading" class="loader"></v-loader>
-      <div class="post__view--content" v-else-if="!loading && !post ">
+      <div class="post__view--content" v-if="!loading && $route.params.post === 'notrequired' ">
         <div class="post__view--content--title">
           <span>{{ currentPost.title }}</span>
         </div>
@@ -18,7 +18,10 @@
           <span>{{ currentPost.body }}</span>
         </div>
       </div>
-      <div class="post__view--content" v-else>
+      <div
+        class="post__view--content"
+        v-else-if="!loading && $route.params.post !== 'notrequired' "
+      >
         <div class="post__view--content--title">
           <span>{{ post.title }}</span>
         </div>
@@ -26,14 +29,21 @@
           <span>{{ post.body }}</span>
         </div>
       </div>
-      <div class="com" @click="show = !show" v-if="comments.length !== 0 && !loading">Comments</div>
-      <div class="message" v-if="comments.length === 0">
-        <h1>The post have no comments yet...</h1>
-      </div>
-      <div class="message" v-else-if="post === undefined">
+
+      <div
+        class="com"
+        @click="show = !show"
+        v-if="!loading &&  $route.params.post === 'notrequired' "
+      >Comments</div>
+      <div class="message" v-else-if="$route.params.post === '[object Object]'">
         <h1>the post is deleted...</h1>
       </div>
-      <div class="comments" v-if="show && !loading">
+      <div class="message" v-else>
+        <h1>The post have no comments yet...</h1>
+      </div>
+      <!-- COMMENTS -->
+
+      <div class="comments" v-if="show">
         <div class="comment" v-for="comment in comments" :key="comment.id">
           <div class="comment__email">{{ comment.email }}</div>
           <div class="comment__name">{{ comment.name }}</div>
@@ -49,13 +59,8 @@ import Loader from "../components/Loader.vue";
 
 export default {
   props: {
-    id: {
-      required: true,
-      type: Number
-    },
     post: {
-      required: true,
-      type: Object
+      required: true
     }
   },
   data() {
@@ -68,15 +73,13 @@ export default {
   },
   methods: {
     getComments() {
-      if (!isNaN(this.id)) {
-        this.$store.dispatch("getComments", +this.id);
+      if (this.$route.params.post === "notrequired") {
+        this.$store.dispatch("getComments", +this.$route.params.id);
       }
     },
     getPostInfo() {
-      console.log(!isNaN(this.id));
-      console.log(this.post);
-      if (!isNaN(this.id)) {
-        this.$store.dispatch("getPostInfo", +this.id);
+      if (this.$route.params.post === "notrequired") {
+        this.$store.dispatch("getPostInfo", +this.$route.params.id);
       }
     }
   },
@@ -93,8 +96,10 @@ export default {
   },
   created() {
     this.getComments();
-    console.log(this.comments);
     this.getPostInfo();
+  },
+  mounted() {
+    console.log(this.$route.params);
   }
 };
 </script>

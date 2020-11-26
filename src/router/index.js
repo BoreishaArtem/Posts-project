@@ -11,7 +11,7 @@ const routes = [
   },
   {
     name: 'postview',
-    path: '/postview/:id/comments',
+    path: '/postview/:id/:post/comments/:specified',
     component: () => import('../views/PostView.vue'),
     props: true
   },

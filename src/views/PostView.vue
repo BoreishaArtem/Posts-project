@@ -31,7 +31,7 @@
       </div>
 
       <div
-        class="comments"
+        class="com"
         @click="show = !show"
         v-if="!loading &&  $route.params.post === 'notrequired' "
       >Comments</div>
@@ -124,7 +124,7 @@ export default {
     }
   }
 }
-.comments {
+.com {
   text-align: center;
   background-color: $greyLight;
   border: 0.15rem solid $greyLight;

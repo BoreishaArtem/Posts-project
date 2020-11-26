@@ -23,7 +23,22 @@
         </tr>
       </tbody>
     </table>
-    <v-modal :company="company" v-if="modal" @closeModal="modal=false" />
+    <v-modal :company="company" v-if="modal" @closeModal="modal=false">
+      <!-- <span class="modal__body--content--type">Hello:</span> -->
+      <div class="modal__body--content">
+        <span class="modal__body--content--type">Company:</span>
+        <span class="modal__body--content--val">{{company.name}}</span>
+      </div>
+      <div class="modal__body--content">
+        <span class="modal__body--content--type">catchPhrase:</span>
+        <span class="modal__body--content--val">{{company.catchPhrase}}</span>
+      </div>
+      <div class="modal__body--content">
+        <span class="modal__body--content--type">Bs:</span>
+        <span class="modal__body--content--val">{{company.bs}}</span>
+      </div>
+      <!-- <span class="modal__body--content--val">World</span> -->
+    </v-modal>
   </div>
 </template>
 

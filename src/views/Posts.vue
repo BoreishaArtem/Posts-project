@@ -24,7 +24,6 @@
       >{{ page }}</div>
       <button @click="currentPage++" class="btn btn--next">Next</button>
     </div>
-    <v-pagination :posts="allPosts" />
   </div>
 </template>
 
@@ -32,7 +31,6 @@
 import { mapActions, mapGetters } from "vuex";
 import Post from "../components/Post.vue";
 import Loader from "../components/Loader.vue";
-import Pagination from "../components/Pagination.vue";
 
 export default {
   name: "Posts",
@@ -45,8 +43,7 @@ export default {
   },
   components: {
     vPost: Post,
-    vLoader: Loader,
-    vPagination: Pagination
+    vLoader: Loader
   },
   methods: {
     ...mapActions(["getPosts"]),
